@@ -1,0 +1,7 @@
+{
+  "signal": "SIGHUP",
+  "ignore": ["node_modules"],
+  "ext": "json,ts",
+  "exec": "ts-node bin/www.ts"
+
+}
