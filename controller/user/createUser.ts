@@ -1,12 +1,13 @@
 export {};
-const model = require('../models/User');
+const model = require('../../models/User');
 
 const controller = async (req, res) => {
   model.create(req.body, (error: any, result: any) => {
     if (error) {
       res.status(404);
+      res.send('something when wrong');
     } else {
-      res.json(req.body);
+      res.send('successful create user');
     }
   });
 };

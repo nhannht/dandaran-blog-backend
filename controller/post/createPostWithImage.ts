@@ -1,5 +1,5 @@
 export {};
-const model = require('../models/Post');
+const model = require('../../models/Post');
 const path = require('path');
 
 const controller = async (req, res) => {
@@ -13,6 +13,7 @@ const controller = async (req, res) => {
 
             ...req.body,
             image: 'public/img/'+ image.name,
+            user: req.session.User,
 
           }, (err, result) => {
             if (err) {

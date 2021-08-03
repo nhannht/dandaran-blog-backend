@@ -9,10 +9,12 @@
     "clean": "fd -e js --exclude \"node_modules\" --exclude \"public\" -x rm {}"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
-    "express-fileupload": "^1.2.1"
+    "express-fileupload": "^1.2.1",
+    "express-session": "^1.17.2"
   },
   "devDependencies": {
     "@types/mongoose": "^5.11.97",

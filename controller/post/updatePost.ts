@@ -1,5 +1,5 @@
 export {};
-const model = require('../models/Post');
+const model = require('../../models/Post');
 
 const controller = async (req, res) => {
   model.findByIdAndUpdate(req.params.postId, req.body, (error, newpost)=> {

@@ -1,5 +1,5 @@
 export {};
-const model = require('../models/Post');
+const model = require('../../models/Post');
 
 const controller = async (req: any, res: any) => {
   model.findOne({_id: req.params.postId}, (error: any, post: any) => {

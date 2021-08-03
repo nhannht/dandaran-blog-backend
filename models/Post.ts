@@ -7,10 +7,19 @@ const Schema = mongoose.Schema;
 const schema = new Schema({
   title: String,
   body: String,
-  user: String,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
   image: String,
-  date: String,
-  updateDate: String,
+  date: {
+    type: Date,
+    default: new Date(),
+  },
+  updateDate: {
+    type: Date,
+  },
 });
 
 const model = mongoose.model('BlogPost', schema);
