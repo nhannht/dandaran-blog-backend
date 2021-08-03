@@ -1,17 +1,13 @@
 export {};
 const mongoose = require('mongoose');
 const env = require('../controller/MongoEnv');
-mongoose.connect(`mongodb://${env.username}:${env.password}@localhost:27017/blogpost?authSource=admin`, {useNewUrlParser: true}).then((r: any) => console.log(r));
+mongoose.connect(`mongodb://${env.username}:${env.password}@localhost:27017/blogpost?authSource=admin`, {useNewUrlParser: true});
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
   title: String,
   body: String,
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
-  },
+  user: String,
   image: String,
   date: {
     type: Date,

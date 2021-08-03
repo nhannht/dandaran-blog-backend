@@ -2,14 +2,11 @@ export {};
 const model = require('../../models/Post');
 
 const controller = async (req, res) => {
-  model.create(req.body, (error: any) => {
+  model.create(req.body, (error: any, ok) => {
     if (error) {
-      res.writeHead(404).send('something when wrong');
-      console.log(error);
+      return res.status(404).json({status: error});
     } else {
-      console.log(req.body);
-      res.writeHead(404);
-      res.end('Successful create post');
+      res.status(200).json(req.body);
     }
   });
 };
