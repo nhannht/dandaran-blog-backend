@@ -4,7 +4,6 @@
 // - [ ] TODO: Session handle
 // - [ ] TODO: React front end
 const express = require('express');
-const morgan = require('morgan');
 const path = require('path');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
@@ -40,15 +39,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postRouter);
-app.get('/set_session', (req, res) => {
-  // set a object to session
-  req.session.User = {
-    website: 'anonystick.com',
-    type: 'blog javascript',
-    like: '4550',
-  };
-
-  return res.status(200).json({status: 'success'});
+// app.get('/set_session', (req, res) => {
+//   // set a object to session
+//   req.session.User = {
+//     website: 'anonystick.com',
+//     type: 'blog javascript',
+//     like: '4550',
+//   };
+//
+//   return res.status(200).json({status: 'success'});
+// });
+app.get('/logout', (req, res) => {
+  req.session.destroy(() => {
+    res.clearCookie('connect.sid');
+    res.status(200).send('Wtf');
+  },
+  );
 });
 
 

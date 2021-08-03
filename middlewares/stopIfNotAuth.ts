@@ -1,7 +1,7 @@
 export {};
 const middleWare = (req, res, next) => {
-  if (!req.session.userId) {
-    res.redirect('/');
+  if (! req.session.User ) {
+    return res.status(404).send('Required login');
   }
   next();
 };

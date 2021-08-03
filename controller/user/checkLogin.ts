@@ -10,11 +10,11 @@ const controller = (req, res) => {
           req.session.User = user._id;
           res.json({status: 'Successful login'});
         } else {
-          res.setHeader(404).json({status: 'Wrong password'});
+          return res.status(404).json({status: 'Wrong password'});
         }
       });
     } else {
-      res.setHeader(404).json({status: 'Cannot found this username'});
+      return res.status(404).json({status: 'Cannot found this username'});
     }
   });
 };
