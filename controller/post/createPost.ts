@@ -1,15 +1,15 @@
 export {};
 const model = require('../../models/Post');
-
-const controller = async (req, res) => {
-  model.create(req.body, (error: any, ok) => {
+import {CustomRequest} from '../../interface/customRequest';
+import {CustomResponse} from '../../interface/customResponse';
+const controller = async (req:CustomRequest, res:CustomResponse) => {
+  model.create(req.body, (error: any) => {
     if (error) {
       return res.status(404).json({status: error});
     } else {
-      res.status(200).json(req.body);
+      return res.status(200).json({status: 'Sucessful create post'});
     }
   });
 };
-
 
 module.exports = controller;

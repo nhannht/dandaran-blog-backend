@@ -1,4 +1,8 @@
 export {};
+import {NextFunction} from 'express';
+import {CustomRequest} from '../interface/customRequest';
+import {CustomResponse} from '../interface/customResponse';
+
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const env = require('../controller/MongoEnv');
@@ -16,10 +20,11 @@ const UserSchema = new schema({
   },
 });
 
-UserSchema.pre('save', function(next) {
-  const user = this;
+UserSchema.pre('save', function(next: NextFunction) {
+  // @ts-ignore
+  const user:any = this;
 
-  bcrypt.hash(user.password, 10, (error, hash) => {
+  bcrypt.hash(user.password, 10, ( hash: String) => {
     user.password = hash;
     next();
   });

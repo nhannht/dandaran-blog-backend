@@ -1,11 +1,14 @@
+import {CustomRequest} from '../../interface/customRequest';
+
 export {};
 const model = require('../../models/Post');
-const controller = async (req: any, res: any) => {
-  model.find({}, (error: any, posts: any) => {
+import {CustomResponse} from '../../interface/customResponse';
+const controller = async (_req:CustomRequest, res: CustomResponse) => {
+  model.find({}, (error: Error, posts: any) => {
     if (error) {
-      res.send(error);
+      return res.status(404).send(error.message);
     } else {
-      res.json(posts);
+      return res.status(200).json({status: posts});
     }
   });
 };

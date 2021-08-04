@@ -1,13 +1,13 @@
 export {};
 const model = require('../../models/User');
-
-const controller = async (req, res) => {
-  model.create(req.body, (error: any, result: any) => {
+import {CustomRequest} from '../../interface/customRequest';
+import {CustomResponse} from '../../interface/customResponse';
+const controller = async (req:CustomRequest, res:CustomResponse) => {
+  model.create(req.body, (error: Error) => {
     if (error) {
-      res.status(404);
-      res.send('something when wrong');
+      return res.status(404).send('something when wrong');
     } else {
-      res.send('successful create user');
+      return res.status(200).send('successful create user');
     }
   });
 };

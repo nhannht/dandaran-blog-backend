@@ -1,13 +1,13 @@
 export {};
 const model = require('../../models/Post');
-
-const controller = async (req, res) => {
-  model.findByIdAndUpdate(req.params.postId, req.body, (error, newpost)=> {
+import {CustomRequest} from '../../interface/customRequest';
+import {CustomResponse} from '../../interface/customResponse';
+const controller = async (req:CustomRequest, res:CustomResponse) => {
+  model.findByIdAndUpdate(req.params.postId, req.body, (error:Error, newpost: JSON)=> {
     if (error) {
-      res.send(error);
-      res.sendStatus(404);
+      return res.status(404).json({status: 'Dont find any post with this id'});
     } else {
-      res.json(newpost);
+      return res.status(200).json({status: newpost});
     }
   });
 };

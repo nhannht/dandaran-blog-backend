@@ -1,13 +1,16 @@
 export {};
 const model = require('../../models/Post');
 const path = require('path');
+import {UploadedFile} from 'express-fileupload';
+import {CustomResponse} from '../../interface/customResponse';
+import {CustomRequest} from '../../interface/customRequest';
 
-const controller = async (req, res) => {
-  const image = req.files.image;
+const controller = async (req:CustomRequest, res:CustomResponse) => {
+  const image = req.files.image as UploadedFile;
   image.mv(path.resolve(__dirname, '../public/img', image.name),
-      async (error) => {
+      async (error:Error) => {
         if (error) {
-          res.send(error);
+          return res.status(404).send(error.message);
         } else {
           await model.create({
 
@@ -15,14 +18,13 @@ const controller = async (req, res) => {
             image: 'public/img/'+ image.name,
             user: req.session.User,
 
-          }, (err, result) => {
+          }, (err:Error) => {
             if (err) {
-              res.send(err);
+              return res.status(404).send(err.message);
             }
           });
         }
       });
-  res.send(req.body);
 };
 
 

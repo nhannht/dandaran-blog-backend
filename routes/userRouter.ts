@@ -14,8 +14,8 @@ router.get('/', middleWareStopIfNotAuth, controllerListAllUser);
 
 router.get('/removeall', controlerDeleteAllUser);
 router.post('/signup', controllerCreateUSer);
-router.post('/delete/:userId', controllerDeleteUser);
 router.post('/login', controllerLogin);
+router.get('/delete/:userId', controllerDeleteUser);
 router.get('/:userId', controllerFindOneUser);
 // router.get('/logout', controllerLogout);
 module.exports = router;

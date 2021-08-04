@@ -1,0 +1,11 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+Frontend <--> Router : view layer pass data to application layer
+
+Router <--> Controller: Controller and router handle data with implementf logic
+Controller <--> DataBase
+
+@enduml

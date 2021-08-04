@@ -1,14 +1,15 @@
 export {};
 const model = require('../../models/User');
 const bcrypt = require('bcrypt');
-
-const controller = (req, res) => {
-  model.findOne({username: req.body.username}, (error, user)=> {
+import {CustomRequest} from '../../interface/customRequest';
+import {CustomResponse} from '../../interface/customResponse';
+const controller = (req:CustomRequest, res:CustomResponse) => {
+  model.findOne({username: req.body.username}, ( user: { password: unknown; _id: unknown; })=> {
     if (user) {
-      bcrypt.compare(req.body.password, user.password, (error, same) => {
+      bcrypt.compare(req.body.password, user.password, ( same: unknown) => {
         if (same) {
           req.session.User = user._id;
-          res.json({status: 'Successful login'});
+          return res.status(200).json({status: 'Successful login'});
         } else {
           return res.status(404).json({status: 'Wrong password'});
         }

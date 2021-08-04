@@ -1,11 +1,12 @@
 export {};
-const controller = (req, res, error) => {
+import {CustomRequest} from '../../interface/customRequest';
+import {CustomResponse} from '../../interface/customResponse';
+const controller = (req:CustomRequest, res:CustomResponse, error: any) => {
   if (error) {
-    res.send(error);
-    res.end();
+    return res.status(404).json({status: error});
   } else {
     req.session.destroy();
-    res.send('Sucessful log out');
+    return res.status(200).json({status: 'Successful log out'});
   }
 };
 module.exports = controller;

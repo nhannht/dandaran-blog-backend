@@ -2,11 +2,11 @@ export {};
 const model = require('../../models/User');
 
 const controller = async (req: any, res: any) => {
-  model.findOne({_id: req.params.userId}, (error: any, post: any) => {
+  model.findOne({_id: req.params.userId}, (error: Error, post: unknown) => {
     if (error) {
-      res.status(400);
+      return res.status(404).send(error.message);
     } else {
-      res.json(post);
+      return res.status(200).json({status: post});
     }
   });
 };
